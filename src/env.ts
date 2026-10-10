@@ -35,6 +35,8 @@ const serverSchema = z.object({
   VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
   /** Optional upstream the contact endpoint forwards leads to (CRM / webhook). */
   CONTACT_ENDPOINT: optionalUrl(),
+  /** Optional upstream the newsletter sign-up forwards to (mailing list / webhook). */
+  NEWSLETTER_ENDPOINT: optionalUrl(),
 });
 
 /** Public env — safe to read anywhere (server or client). */
@@ -51,6 +53,7 @@ let cachedServerEnv: z.infer<typeof serverSchema> | undefined;
 export function getServerEnv() {
   cachedServerEnv ??= serverSchema.parse({
     CONTACT_ENDPOINT: process.env.CONTACT_ENDPOINT || undefined,
+    NEWSLETTER_ENDPOINT: process.env.NEWSLETTER_ENDPOINT || undefined,
     VERCEL_PROJECT_PRODUCTION_URL:
       process.env.VERCEL_PROJECT_PRODUCTION_URL || undefined,
   });

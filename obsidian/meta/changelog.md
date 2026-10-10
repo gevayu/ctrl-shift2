@@ -1,6 +1,6 @@
 ---
 tags: [meta, changelog]
-updated: 2026-10-03
+updated: 2026-10-10
 ---
 
 # Changelog
@@ -15,6 +15,23 @@ remembering. Routine commits do not need an entry.
 For *why* the conventions are what they are, see [[decisions-log]].
 
 ---
+
+## 2026-10-10 — Ctrl+Shift site (Hebrew, RTL) replaces the Vexon demo
+
+- **Content.** The Vexon demo copy is gone; the site is Ctrl+Shift's, from the
+  client's copy doc: home, services (+3 service pages), client stories (+2),
+  blog (+6 articles as Markdown in `src/content/blog/`), process library (+5),
+  FAQ, contact (+2 thank-you pages), 404. Copy lives in `src/data/*`.
+- **RTL.** `<html lang="he" dir="rtl">`; logical `start/end` utilities only.
+  `TextEffect` sets `dir="auto"` so split characters keep their reading order.
+- **One font.** Noto Sans Hebrew for every role (sans, display, mono tokens).
+- **Links to unbuilt pages** are `href: null` and render as plain text
+  (`SmartLink`), so nothing points at a 404. `src/lib/routes.ts` lists every route.
+- **Forms.** `/api/contact` (shared zod schema in `src/lib/contact-schema.ts`,
+  honeypot) and `/api/newsletter` forward to `CONTACT_ENDPOINT` /
+  `NEWSLETTER_ENDPOINT`; unset, the payload is logged server-side.
+- **Logos.** Client and partner logos are white silhouettes
+  (`public/assets/logos/`), sized by equal visual area in `LogoMarquee`.
 
 ## 2026-10-06 — owner review (D-033), branch `optimize/pass-2`
 

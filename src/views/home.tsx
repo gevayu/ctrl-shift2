@@ -1,6 +1,7 @@
 // 📖 Docs: obsidian/frontend/views.md
 
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { ArrowLink, ButtonLink } from "@/components/site/button-link";
 import { CtaSection } from "@/components/site/cta-section";
@@ -16,6 +17,7 @@ import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { TextEffect } from "@/components/ui/text-effect";
 import { homeContent as c } from "@/data/home";
 import { logos } from "@/data/logos";
+import { latestArticles } from "@/lib/blog";
 import { generateMetadata } from "@/utils/seo/generate-page-metadata";
 import { faqPageSchema } from "@/utils/seo/structured-data";
 
@@ -189,9 +191,12 @@ export const HomeView = ({ robot = false }: { robot?: boolean }) => (
     {/* 11. From the blog */}
     <Section id="blog" index="[ 06 ]" title={c.blog.title}>
       <ul className="border-t border-ink/10">
-        {c.blog.posts.map((title) => (
-          <li key={title} className="border-b border-ink/10 py-6">
-            <h3 className="font-display text-xl font-bold text-ink md:text-2xl">{title}</h3>
+        {latestArticles(3).map((post) => (
+          <li key={post.slug} className="border-b border-ink/10">
+            <Link href={post.href} className="group flex flex-col gap-2 py-6">
+              <h3 className="font-display text-xl font-bold text-ink transition-opacity duration-[var(--duration-fast)] ease-entrance group-hover:opacity-70 md:text-2xl">{post.title}</h3>
+              <p className="text-xs text-muted">{post.author}</p>
+            </Link>
           </li>
         ))}
       </ul>

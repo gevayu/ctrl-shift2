@@ -7,7 +7,7 @@
 import type { Faq } from "@/components/site/faq-list";
 import type { Story } from "@/components/site/story-card";
 import { links, type LinkItem } from "@/data/site";
-import { routes } from "@/lib/routes";
+import { routes, storyPath } from "@/lib/routes";
 import type { Crumb } from "@/utils/seo/structured-data";
 
 const HOME: Crumb = { label: "בית", href: routes.home };
@@ -81,7 +81,7 @@ export const servicesContent = {
         { value: "40", label: "שעות חיסכון בשבוע" },
         { value: "27 → 87", label: "מדד השליטה" },
       ],
-      link: { label: "לסיפור המלא", href: links.stories },
+      link: { label: "לסיפור המלא", href: storyPath("nature-games") },
     } satisfies Story,
   },
   faq: {
@@ -317,7 +317,7 @@ export const implementationPage: ServicePage = {
         ],
         // The doc marks these migration details as a hypothesis, to be confirmed.
         tech: "מעבר הדרגתי, המשרד קודם, המדריכים אחרי שלושה שבועות. חפיפה: חודש. 4 אינטגרציות.",
-        link: { label: "לסיפור המלא", href: links.stories },
+        link: { label: "לסיפור המלא", href: storyPath("nature-games") },
       },
     },
     {

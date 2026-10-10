@@ -12,6 +12,8 @@ export interface StoryMetric {
 export interface Story {
   name: string;
   industry: string;
+  /** Company size, e.g. "10 עד 30 עובדים". */
+  size?: string;
   /** The path the client went through (services page). */
   path?: string;
   before?: string;
@@ -19,6 +21,8 @@ export interface Story {
   shift: readonly StoryMetric[];
   /** The technical summary (implementation page). */
   tech?: string;
+  /** Control score before and after, and the dimensions that moved most. */
+  control?: { before: number; after: number; dims?: string };
   link: LinkItem;
 }
 
@@ -31,14 +35,28 @@ const LABEL_HE = "text-xs font-medium text-muted";
  * client story: name and industry, the Ctrl line, the Shift numbers large.
  * `wide` lays it across the full width with the numbers beside the text.
  */
-export const StoryCard = ({ story, wide = false, headingLevel = "h3" }: { story: Story; wide?: boolean; headingLevel?: "h2" | "h3" }) => {
+export const StoryCard = ({
+  story,
+  wide = false,
+  headingLevel = "h3",
+  bare = false,
+}: {
+  story: Story;
+  wide?: boolean;
+  headingLevel?: "h2" | "h3";
+  /** No "full story" link: the card at the top of the story itself. */
+  bare?: boolean;
+}) => {
   const Heading = headingLevel;
   return (
     <article className={`flex h-full flex-col gap-6 rounded-md border border-ink/10 bg-page/40 p-6 backdrop-blur-md md:p-8 ${wide ? "lg:grid lg:grid-cols-2 lg:gap-12" : ""}`}>
       <div className="flex flex-col gap-6">
         <header>
           <Heading className="font-display text-2xl font-bold text-ink">{story.name}</Heading>
-          <p className="mt-1 text-sm text-muted">{story.industry}</p>
+          <p className="mt-1 text-sm text-muted">
+            {story.industry}
+            {story.size && <> | {story.size}</>}
+          </p>
         </header>
         {story.path && (
           <p className="text-sm leading-relaxed text-soft">
@@ -76,7 +94,21 @@ export const StoryCard = ({ story, wide = false, headingLevel = "h3" }: { story:
           </dl>
         </div>
         {story.tech && !wide && <Tech text={story.tech} />}
-        <ArrowLink item={story.link} className="mt-auto" />
+        {story.control && (
+          <div className="border-t border-ink/10 pt-5 text-sm text-soft">
+            <p>
+              <span className={LABEL_HE}>ציון שליטה </span>
+              לפני: <strong className="text-ink">{story.control.before}</strong> | אחרי: <strong className="text-ink">{story.control.after}</strong>
+            </p>
+            {story.control.dims && (
+              <p className="mt-2">
+                <span className={LABEL_HE}>הממדים שהשתנו הכי הרבה: </span>
+                {story.control.dims}
+              </p>
+            )}
+          </div>
+        )}
+        {!bare && <ArrowLink item={story.link} className="mt-auto" />}
       </div>
     </article>
   );

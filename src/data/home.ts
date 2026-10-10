@@ -8,7 +8,7 @@
 import type { Faq } from "@/components/site/faq-list";
 import type { Story } from "@/components/site/story-card";
 import { links, type LinkItem } from "@/data/site";
-import { routes } from "@/lib/routes";
+import { routes, storyPath } from "@/lib/routes";
 
 export const homeContent = {
   hero: {
@@ -120,7 +120,7 @@ export const homeContent = {
           { value: "40%", label: "אחוז העבודה הידנית שהפך לאוטומטי" },
           { value: "30%", label: "עלייה במכירות" },
         ],
-        link: { label: "לסיפור המלא", href: links.stories },
+        link: { label: "לסיפור המלא", href: storyPath("pola-polaroid") },
       },
       {
         name: "משחקים בדרך הטבע",
@@ -132,7 +132,7 @@ export const homeContent = {
           // Copy doc: "עלייה היקף הפעילות" — the missing ב restored, as in card 3.
           { value: "40%", label: "עלייה בהיקף הפעילות" },
         ],
-        link: { label: "לסיפור המלא", href: links.stories },
+        link: { label: "לסיפור המלא", href: storyPath("nature-games") },
       },
       {
         name: "סנדוויץ' בר",
@@ -143,7 +143,8 @@ export const homeContent = {
           { value: "40%", label: "אחוז העבודה הידנית שהפך לאוטומטי" },
           { value: "30%", label: "עלייה בהיקף הפעילות" },
         ],
-        link: { label: "לסיפור המלא", href: links.stories },
+        // No story page for this client yet.
+        link: { label: "לסיפור המלא", href: null },
       },
     ] satisfies Story[],
     link: { label: "לכל סיפורי הלקוח, בסינון לפי ענף וגודל", href: links.stories } satisfies LinkItem,
@@ -170,14 +171,9 @@ export const homeContent = {
 
   blog: {
     title: "על יעילות. לא על כלים.",
-    /** Placeholder titles from the doc ("for illustrating the style") until the blog exists. */
-    posts: [
-      "7 סימנים שהעסק שלכם צמח מעבר ל-CRM שלו",
-      "כמה עבודה ידנית צריכה להיות בארגון של 50 עובדים?",
-      "למה סוכן AI לא יעזור אם נתוני הלקוחות שלכם נמצאים בחמישה מקומות",
-    ],
-    link: { label: "לכל המאמרים", href: null } satisfies LinkItem,
-    secondary: { label: "לספריית התהליכים", href: null } satisfies LinkItem,
+    /** The three newest articles are pulled from the blog (`latestArticles`). */
+    link: { label: "לכל המאמרים", href: links.blog } satisfies LinkItem,
+    secondary: { label: "לספריית התהליכים", href: links.processes } satisfies LinkItem,
   },
 
   faq: {
