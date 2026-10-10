@@ -6,14 +6,16 @@ import { ArrowLink, ButtonLink } from "@/components/site/button-link";
 import { CtaSection } from "@/components/site/cta-section";
 import { FaqList } from "@/components/site/faq-list";
 import { JsonLd } from "@/components/site/json-ld";
+import { LogoMarquee } from "@/components/site/logo-marquee";
 import { Section } from "@/components/site/section";
 import { SiteShell } from "@/components/site/site-shell";
 import { StageList } from "@/components/site/stage-list";
 import { StoryCard } from "@/components/site/story-card";
-import { DiamondStar, Marquee } from "@/components/ui/loops";
+import { DiamondStar } from "@/components/ui/loops";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { TextEffect } from "@/components/ui/text-effect";
 import { homeContent as c } from "@/data/home";
+import { logos } from "@/data/logos";
 import { generateMetadata } from "@/utils/seo/generate-page-metadata";
 import { faqPageSchema } from "@/utils/seo/structured-data";
 
@@ -176,22 +178,12 @@ export const HomeView = ({ robot = false }: { robot?: boolean }) => (
       <ButtonLink item={c.foundation.cta} variant="secondary" className="mt-8" />
     </Section>
 
-    {/* 9. Clients — names in grey until approved logos exist. */}
-    <Section id="clients" title={c.clients.title} titleSize="small">
-      <ul className="sr-only">
-        {c.clients.names.map((name) => (
-          <li key={name}>{name}</li>
-        ))}
-      </ul>
-      <div dir="ltr" aria-hidden="true" className="-mx-6 overflow-hidden md:-mx-10">
-        <Marquee className="flex w-max whitespace-nowrap">
-          {[...c.clients.names, ...c.clients.names].map((name, i) => (
-            <span key={i} dir="rtl" className="mx-8 font-display text-2xl font-bold text-ink/25 md:mx-12 md:text-4xl">
-              {name}
-            </span>
-          ))}
-        </Marquee>
-      </div>
+    {/* 9. Clients, then the systems we implement (partners) — logo carousels. */}
+    <Section id="clients" title={logos.clients.title} titleSize="small">
+      <LogoMarquee dir={logos.clients.dir} items={logos.clients.items} />
+    </Section>
+    <Section id="partners" title={logos.partners.title} titleSize="small">
+      <LogoMarquee dir={logos.partners.dir} items={logos.partners.items} />
     </Section>
 
     {/* 11. From the blog */}

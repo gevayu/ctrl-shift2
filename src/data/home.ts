@@ -168,29 +168,6 @@ export const homeContent = {
     cta: { label: "באיזו מדרגה אתם?", href: routes.services } satisfies LinkItem,
   },
 
-  clients: {
-    title: "חברות שבחרו לצמוח איתנו",
-    /** Shown as grey names until approved logo files exist. */
-    names: [
-      "שריג אלקטריק",
-      "TopLevel נדל\"ן",
-      "מכללת סרג'יו",
-      "אגור הנדסה",
-      "easy2give",
-      "דורית גבאי רו\"ח",
-      "סנדוויץ' בר",
-      "בורגר סטיישן",
-      "פולה פולארויד",
-      "פיטל",
-      "רוני שטיגליץ 4sale",
-      "נינג'ה סקול",
-      "גאדג'אט שופ",
-      "טל נתן הפקות אירועים",
-      "ליאל ימין שמלות כלה",
-      "משכנתאות TTF",
-    ],
-  },
-
   blog: {
     title: "על יעילות. לא על כלים.",
     /** Placeholder titles from the doc ("for illustrating the style") until the blog exists. */

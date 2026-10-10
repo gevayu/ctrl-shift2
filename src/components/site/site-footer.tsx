@@ -1,8 +1,6 @@
-import Link from "next/link";
-
 import { siteContent as c } from "@/data/site";
-import { routes } from "@/lib/routes";
 
+import { BrandLogo } from "./brand-logo";
 import { SmartLink } from "./smart-link";
 
 const LINK = "text-sm text-soft transition-colors duration-[var(--duration-fast)] ease-entrance hover:text-ink";
@@ -14,9 +12,7 @@ export const SiteFooter = () => {
     <footer className="relative z-10 border-t border-ink/5 bg-page px-6 pb-28 pt-16 md:px-10 md:pb-12">
       <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-4">
-          <Link href={routes.home} dir="ltr" className="self-start font-mono text-xl font-bold tracking-tight text-ink">
-            {c.brand}
-          </Link>
+          <BrandLogo height={52} />
           <p className="max-w-xs text-sm leading-relaxed text-muted">{f.tagline}</p>
           <address className="flex flex-col gap-2 not-italic">
             <span className="text-sm text-soft">{f.address}</span>

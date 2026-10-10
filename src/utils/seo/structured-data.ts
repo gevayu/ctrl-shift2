@@ -25,10 +25,11 @@ export function getSiteStructuredData() {
         "@id": orgId,
         name: siteConfig.name,
         url: siteConfig.url,
-        logo: `${siteConfig.url}/icon-512.png`,
+        logo: `${siteConfig.url}/assets/logos/brand/ctrl-shift.png`,
         description: siteConfig.about,
         email: contact.email,
         telephone: contact.phoneE164,
+        openingHours: contact.hoursSchema,
         address: {
           "@type": "PostalAddress",
           streetAddress: contact.street,

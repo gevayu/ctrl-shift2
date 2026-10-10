@@ -51,5 +51,8 @@ export const siteConfig = {
     email: "office@ctrl-shift.co.il",
     street: "דם המכבים 28",
     city: "מודיעין-מכבים-רעות",
+    hours: "ימים א' עד ה', 9:00 עד 18:00",
+    /** schema.org openingHours for the same. */
+    hoursSchema: "Su-Th 09:00-18:00",
   },
 } as const;
