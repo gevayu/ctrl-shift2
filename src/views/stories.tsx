@@ -10,6 +10,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { Section } from "@/components/site/section";
 import { SiteShell } from "@/components/site/site-shell";
 import { StoriesGrid } from "@/components/site/stories-grid";
+import { Quote } from "@/components/site/quote";
 import { StoryCard } from "@/components/site/story-card";
 import { findStory, stories, storiesIndex as c, testimonials, type StoryPage } from "@/data/stories";
 import { routes, storyPath } from "@/lib/routes";
@@ -63,18 +64,6 @@ export const StoriesView = () => (
 
     <CtaSection primary={c.cta.primary} secondary={c.cta.secondary} routing />
   </SiteShell>
-);
-
-const Quote = ({ text, person, role }: { text: string; person: string; role: string }) => (
-  <figure className="flex h-full flex-col gap-5 rounded-md border border-ink/10 bg-page/40 p-6 md:p-8">
-    <blockquote className="flex-1 text-base leading-relaxed text-ink">
-      <p>&quot;{text}&quot;</p>
-    </blockquote>
-    <figcaption className="text-sm">
-      <span className="block font-bold text-ink">{person}</span>
-      <span className="text-muted">{role}</span>
-    </figcaption>
-  </figure>
 );
 
 /* ── A story ────────────────────────────────────────────────────────── */

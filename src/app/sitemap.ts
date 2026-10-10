@@ -31,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry(routes.processes, 0.7),
     ...processes.map((p) => entry(processPath(p.slug), 0.6)),
     entry(routes.faq, 0.7),
+    entry(routes.about, 0.7),
     entry(routes.contact, 0.6),
     entry(routes.privacy, 0.2, "yearly"),
   ];

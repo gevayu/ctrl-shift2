@@ -16,6 +16,7 @@ export const routes = {
   faq: "/knowledge/faq",
   blog: "/knowledge/blog",
   processes: "/knowledge/processes",
+  about: "/about",
   contact: "/contact",
   contactThanks: "/contact/thanks",
   contactThanksSmall: "/contact/thanks/small",

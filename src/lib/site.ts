@@ -4,6 +4,7 @@
  * Consumed by the metadata generator, `robots.ts`, `sitemap.ts`, and the
  * JSON-LD structured-data helper.
  */
+import { aboutParagraphs } from "@/data/about-text";
 import { getServerEnv, publicEnv } from "@/env";
 
 /**
@@ -24,8 +25,7 @@ export const siteConfig = {
    * The company in 150 words (copy doc), for the Organization JSON-LD — what
    * search engines and AI answers read about who the company is.
    */
-  about:
-    "Ctrl-Shift מטמיעה מערכות CRM, אוטומציות וכלי AI בחברות ישראליות עם 10 עובדים ומעלה. החברה פועלת ממודיעין-מכבים-רעות, ומנוהלת על ידי צליל נוימן. החברה מורכבת ממחלקת פרויקטים שאחראית על האפיון, תהליך ההקמה ושינויים משמעותיים במערכות, ומחלקת שירות לקוחות שאחראית על התקשורת השוטפת והשינויים לאחר סיום הפרויקט. כל פרויקט מתחיל באיפיון של שבועיים עד ארבעה שבועות, שבו נכתב התהליך העסקי לפני שנבחרת מערכת. האיפיון נמכר בנפרד, כדי שההמלצה תישאר עצמאית. אחריו בנייה והטמעה של 8 עד 12 שבועות, ותמיכה במסלול שירות חודשי או בבנק שעות עם SLA כתוב. החברה מטמיעה בעיקר את מערכות Fireberry (לשעבר Powerlink), אוריגמי, Monday, Zoho ובוחרת ביניהן לפי התהליך של הלקוח, לא לפניו. כל לקוח מקבל ציון שליטה בנתונים לפני הפרויקט ואחריו. בין הלקוחות: שריג אלקטריק, TopLevel נדל\"ן, מכללת סרג'יו, אגור הנדסה, easy2give ופולה פולארויד. עד היום מעל: 50 פרויקטים.",
+  about: aboutParagraphs.join(" "),
   /**
    * Public origin, no trailing slash. Drives canonical URLs, OG tags, the
    * sitemap, and JSON-LD. Set `NEXT_PUBLIC_SITE_URL` in production.

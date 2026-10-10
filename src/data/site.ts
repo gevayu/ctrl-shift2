@@ -45,7 +45,7 @@ export const siteContent = {
     { label: "שירותים", href: routes.services },
     { label: "סיפורי לקוח", href: routes.stories },
     { label: "ידע", href: routes.blog },
-    { label: "החברה", href: null },
+    { label: "החברה", href: routes.about },
   ] satisfies LinkItem[],
   headerCta: { label: "לתאם פגישת איפיון", href: links.meeting },
   /** The sticky bar on phones: two buttons only, no floating WhatsApp. */
