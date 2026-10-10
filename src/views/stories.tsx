@@ -149,9 +149,11 @@ export const StoryView = ({ slug }: { slug: string }) => {
         </Section>
       )}
 
-      <Section id="next" title={s.nextTitle}>
-        <p className="max-w-3xl text-lg leading-relaxed text-soft">{story.next}</p>
-      </Section>
+      {story.next && (
+        <Section id="next" title={s.nextTitle}>
+          <p className="max-w-3xl text-lg leading-relaxed text-soft">{story.next}</p>
+        </Section>
+      )}
 
       <Section id="related" title={s.relatedTitle} titleSize="small">
         {related.length > 0 && (

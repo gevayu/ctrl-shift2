@@ -143,8 +143,7 @@ export const homeContent = {
           { value: "40%", label: "אחוז העבודה הידנית שהפך לאוטומטי" },
           { value: "30%", label: "עלייה בהיקף הפעילות" },
         ],
-        // No story page for this client yet.
-        link: { label: "לסיפור המלא", href: null },
+        link: { label: "לסיפור המלא", href: storyPath("sandwich-bar") },
       },
     ] satisfies Story[],
     link: { label: "לכל סיפורי הלקוח, בסינון לפי ענף וגודל", href: links.stories } satisfies LinkItem,
