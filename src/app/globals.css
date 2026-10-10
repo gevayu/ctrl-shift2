@@ -48,11 +48,16 @@
   --raw-glow-20: 0 0 20px rgba(255, 255, 255, 0.3);
   /* Fallbacks only: the next/font variables are defined on <body>, so they are
      referenced where they are in scope (the @theme binding), never here. */
-  --raw-font-sans-fallback: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --raw-font-mono-fallback: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --raw-font-display-fallback: "Space Grotesk", sans-serif;
-  --raw-font-logo-fallback: "Orbitron", sans-serif;
+  --raw-font-sans-fallback: "Arial Hebrew", Arial, ui-sans-serif, system-ui, sans-serif;
+  --raw-font-display-fallback: "Arial Hebrew", Arial, sans-serif;
   --raw-font-system: sans-serif;
+
+  /* Ctrl+Shift type scale. Fluid: each size grows with the viewport between a
+     phone floor and a wide-screen ceiling. Sized for Hebrew in Noto Sans Hebrew 800. */
+  --raw-text-h1: clamp(2.25rem, 5.2vw, 6rem);
+  --raw-text-h2: clamp(1.75rem, 3.4vw, 3.25rem);
+  --raw-text-formula: clamp(2rem, 8vw, 8.5rem);
+  --raw-text-stat: clamp(2.25rem, 4vw, 3.5rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -102,10 +107,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), var(--raw-font-sans-fallback);
-  --font-mono: var(--font-jetbrains-mono), var(--raw-font-mono-fallback);
-  --font-display: var(--font-space-grotesk), var(--raw-font-display-fallback);
-  --font-logo: var(--font-orbitron), var(--raw-font-logo-fallback);
+  /* One face site-wide (Noto Sans Hebrew); the three roles stay so markup
+     keeps its intent and a role can get its own face again later. */
+  --font-sans: var(--font-noto-hebrew), var(--raw-font-sans-fallback);
+  --font-mono: var(--font-noto-hebrew), var(--raw-font-sans-fallback);
+  --font-display: var(--font-noto-hebrew), var(--raw-font-display-fallback);
   --font-system: var(--raw-font-system);
 
   /* Leading floor for clipped TextEngine reveals — see
@@ -114,6 +120,8 @@
 
   --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
 
+  --color-page: var(--page);
+  --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-soft: var(--soft);
 
@@ -131,6 +139,10 @@
   --text-hero-lg: var(--raw-text-6vw);
   --text-mission-md: var(--raw-text-8vw);
   --text-mission-lg: var(--raw-text-7vw);
+  --text-h1: var(--raw-text-h1);
+  --text-h2: var(--raw-text-h2);
+  --text-formula: var(--raw-text-formula);
+  --text-stat: var(--raw-text-stat);
 
   --spacing-hero-drop: var(--raw-space-58);
   --spacing-mission-box: var(--raw-size-200);
@@ -195,6 +207,21 @@ body ::selection {
 }
 
 @layer components {
+  /* FAQ lists marked open-on-desktop show every answer from md up; phones
+     keep them folded. Browsers without ::details-content keep them folded. */
+  @media (min-width: 48rem) {
+    .faq-list[data-open-desktop] details::details-content {
+      content-visibility: visible;
+      block-size: auto;
+    }
+    .faq-list[data-open-desktop] summary {
+      cursor: default;
+      pointer-events: none;
+    }
+    .faq-list[data-open-desktop] .faq-toggle {
+      display: none;
+    }
+  }
   /* The orb's hot light plume above the halo (was ParticleOrb's inline background). */
   .orb-plume {
     background: radial-gradient(60% 50% at 50% 22%, rgba(120, 170, 255, 0.18), rgba(40, 80, 180, 0.05) 40%, transparent 70%);

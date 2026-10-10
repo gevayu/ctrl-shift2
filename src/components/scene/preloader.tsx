@@ -7,12 +7,12 @@ import { useEffect, useRef, useState } from "react";
 
 import { useRobot } from "@/components/common/robot-view";
 import { useIntro } from "@/components/ui/intro";
-import { vexonContent } from "@/data/mocks/home";
+import { siteContent } from "@/data/site";
 import { initPreloaderSphere } from "@/lib/scene/preloader-sphere";
 import { EASE, MOTION_TRANSLATE_SPRING, MOTION_TWEEN } from "@/utils/animation/cubic-bezier";
 import { fadeMask } from "@/utils/animation/fade-mask";
 
-const { preloader: copy } = vexonContent;
+const { preloader: copy } = siteContent;
 
 /** motion's default enter — x/y spring, opacity tween — per key. */
 const enterConfig = (key: string) => (key === "o" ? MOTION_TWEEN : MOTION_TRANSLATE_SPRING);
@@ -25,7 +25,7 @@ const TagLine = ({ text, first }: { text: string; first: boolean }) => {
   const { o, y } = useSpring({ from: atRest ? { o: 1, y: 0 } : { o: 0, y: 10 }, to: { o: 1, y: 0 }, config: enterConfig });
   // The fade as a mask (fade-mask.ts): same pixels, read at rest by axe.
   return (
-    <animated.div style={{ y, maskImage: o.to(fadeMask) }} className="font-mono text-sm tracking-[0.5em] text-white">
+    <animated.div dir="ltr" style={{ y, maskImage: o.to(fadeMask) }} className="font-mono text-sm tracking-[0.5em] text-white">
       / {text}
     </animated.div>
   );

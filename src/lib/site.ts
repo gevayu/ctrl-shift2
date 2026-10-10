@@ -2,24 +2,30 @@
  * Site-wide configuration — the single source of truth for SEO.
  *
  * Consumed by the metadata generator, `robots.ts`, `sitemap.ts`, and the
- * JSON-LD structured-data helper. Update the placeholder values per project.
+ * JSON-LD structured-data helper.
  */
 import { getServerEnv, publicEnv } from "@/env";
 
 /**
  * Vercel's production domain, read at build time — the fallback when a deploy
- * doesn't set `NEXT_PUBLIC_SITE_URL` (none did: the live canonical said
- * localhost). Server-only: every consumer of `siteConfig` renders on the server.
+ * doesn't set `NEXT_PUBLIC_SITE_URL`. Server-only: every consumer of
+ * `siteConfig` renders on the server.
  */
 const vercelProduction = getServerEnv().VERCEL_PROJECT_PRODUCTION_URL;
 
 export const siteConfig = {
-  name: "Vexon",
-  /** The home page's <title>: the brand + what it is (≤ 60 chars). */
-  title: "Vexon — AI intelligence platform",
-  /** The hero's own body copy — what the product does, in the page's words. */
+  name: "Ctrl+Shift",
+  /** The home page's <title>, from the copy doc. */
+  title: "Ctrl+Shift | הטמעת CRM, אוטומציות ו-AI לחברות של 10 עובדים ומעלה",
+  /** The home page's meta description, from the copy doc. */
   description:
-    "Vexon AI unifies data, workflows, and signals into one intelligence system so SaaS teams can automate decisions and scale smarter.",
+    "העסק גדל. הגיע הזמן שתדעו מה קורה בו. Ctrl+Shift מחזירה למנהלים שליטה בנתונים ומודדת מה השתנה: שעות, תקנים, זמן תגובה. לחברות של 10 עובדים ומעלה.",
+  /**
+   * The company in 150 words (copy doc), for the Organization JSON-LD — what
+   * search engines and AI answers read about who the company is.
+   */
+  about:
+    "Ctrl-Shift מטמיעה מערכות CRM, אוטומציות וכלי AI בחברות ישראליות עם 10 עובדים ומעלה. החברה פועלת ממודיעין-מכבים-רעות, ומנוהלת על ידי צליל נוימן. החברה מורכבת ממחלקת פרויקטים שאחראית על האפיון, תהליך ההקמה ושינויים משמעותיים במערכות, ומחלקת שירות לקוחות שאחראית על התקשורת השוטפת והשינויים לאחר סיום הפרויקט. כל פרויקט מתחיל באיפיון של שבועיים עד ארבעה שבועות, שבו נכתב התהליך העסקי לפני שנבחרת מערכת. האיפיון נמכר בנפרד, כדי שההמלצה תישאר עצמאית. אחריו בנייה והטמעה של 8 עד 12 שבועות, ותמיכה במסלול שירות חודשי או בבנק שעות עם SLA כתוב. החברה מטמיעה בעיקר את מערכות Fireberry (לשעבר Powerlink), אוריגמי, Monday, Zoho ובוחרת ביניהן לפי התהליך של הלקוח, לא לפניו. כל לקוח מקבל ציון שליטה בנתונים לפני הפרויקט ואחריו. בין הלקוחות: שריג אלקטריק, TopLevel נדל\"ן, מכללת סרג'יו, אגור הנדסה, easy2give ופולה פולארויד. עד היום מעל: 50 פרויקטים.",
   /**
    * Public origin, no trailing slash. Drives canonical URLs, OG tags, the
    * sitemap, and JSON-LD. Set `NEXT_PUBLIC_SITE_URL` in production.
@@ -27,26 +33,23 @@ export const siteConfig = {
   url:
     publicEnv.NEXT_PUBLIC_SITE_URL ??
     (vercelProduction ? `https://${vercelProduction}` : "http://localhost:3000"),
-  /** Default Open Graph / Twitter share image (path under `public/`). */
-  ogImage: "/open-graph.jpg",
-  /** Alt text for the share image. */
-  ogImageAlt: "Vexon — “Where raw data becomes your unfair advantage” over a particle orb",
   /**
-   * Blank until the brand holds a real handle — the starter's `@newproject`
-   * would tag whoever owns it. The generator omits the Twitter site/creator
-   * fields while this is empty.
+   * Default Open Graph / Twitter share image (path under `public/`).
+   * ponytail: still the Vexon template's image; replace with a Ctrl+Shift one.
    */
+  ogImage: "/open-graph.jpg",
+  ogImageAlt: "Ctrl+Shift",
   twitterHandle: "",
-  author: "Vexon",
-  /** From the page's copy. */
-  keywords: [
-    "AI intelligence platform",
-    "SaaS automation",
-    "decision automation",
-    "data unification",
-    "workflow intelligence",
-    "real-time analytics",
-  ],
+  author: "Ctrl+Shift",
+  locale: "he_IL",
+  keywords: ["הטמעת CRM", "אוטומציות", "איפיון מערכת CRM", "Fireberry", "Monday", "Zoho", "אוריגמי", "AI לעסקים"],
   /** Browser theme-color (address bar / PWA). */
   themeColor: "#000000",
+  contact: {
+    phone: "054-7406064",
+    phoneE164: "+972547406064",
+    email: "office@ctrl-shift.co.il",
+    street: "דם המכבים 28",
+    city: "מודיעין-מכבים-רעות",
+  },
 } as const;

@@ -27,10 +27,12 @@ export const LegalDocument = ({
   intro,
   sections,
 }: LegalDocumentProps) => (
-  <div className="min-h-lvh w-full bg-page font-sans text-ink">
+  // ponytail: the policy text is still the template's English boilerplate, so the
+  // page is marked English/LTR until the client's Hebrew policy replaces it.
+  <div lang="en" dir="ltr" className="min-h-lvh w-full bg-page font-sans text-ink">
     <header className="mx-auto w-full max-w-[48rem] px-4 pb-8 pt-24 md:px-6 md:pt-28 xl:px-8">
       <Link href="/" className="underline underline-offset-4 transition-opacity duration-[var(--duration-fast)] hover:opacity-70 focus-visible:opacity-70">
-        ← Vexon
+        ← Ctrl+Shift
       </Link>
       <h1 className="mt-6 font-display text-legal-title leading-display">{title}</h1>
       <p className="mt-3 opacity-80">{updated}</p>

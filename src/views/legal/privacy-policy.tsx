@@ -6,7 +6,7 @@ import { generateMetadata } from "@/utils/seo/generate-page-metadata";
 import { LegalDocument } from "./legal-document";
 
 export const privacyPolicyMetadata: Metadata = generateMetadata({
-  title: `${privacyPolicy.title} — Vexon`,
+  title: `${privacyPolicy.title} | Ctrl+Shift`,
   description: privacyPolicy.intro,
   url: "/privacy-policy",
 });

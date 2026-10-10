@@ -57,7 +57,7 @@ export function generateMetadata({
       images: [
         { url: ogImage, width: 1200, height: 630, alt: siteConfig.ogImageAlt },
       ],
-      locale: "en_US",
+      locale: siteConfig.locale,
       type: "website",
     },
     twitter: {

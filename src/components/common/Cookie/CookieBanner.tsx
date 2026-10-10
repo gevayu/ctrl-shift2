@@ -36,7 +36,7 @@ export const CookieBanner = () => {
   return transitions((style, show) =>
     show ? (
       <animated.section
-        aria-label="Cookie consent"
+        aria-label="הסכמה לעוגיות"
         data-cookie-banner=""
         style={{
           opacity: style.opacity,
@@ -45,33 +45,33 @@ export const CookieBanner = () => {
         className="fixed inset-x-4 bottom-4 z-50 flex flex-col gap-3 rounded-xl border border-foreground/10 bg-background/95 p-5 font-sans text-foreground shadow-2xl backdrop-blur-xl sm:bottom-12 sm:start-auto sm:end-12 sm:w-[420px] sm:p-6"
       >
         <h2 className="text-base font-medium leading-snug sm:text-lg">
-          This website uses cookies
+          האתר משתמש בעוגיות
         </h2>
         <p className="text-sm leading-relaxed text-foreground/70">
-          We use cookies to keep the site working, learn how it&apos;s used, and
-          improve what we ship next. Accept everything, reject the non-essential,
-          or pick category by category. See our{" "}
+          חלק מהעוגיות נדרשות כדי שהאתר יעבוד. אחרות עוזרות לנו להבין אילו
+          עמודים נקראים ולשפר אותם. אפשר לאשר הכל, להשאיר רק את ההכרחיות, או
+          לבחור לפי קטגוריה. פרטים ב{" "}
           <Link
             href="/privacy-policy"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 hover:text-foreground/70"
           >
-            privacy policy
+            מדיניות הפרטיות
           </Link>
           .
         </p>
         <div className="mt-1 flex flex-wrap items-center gap-2">
-          <CookieButton onClick={acceptAll}>Accept all</CookieButton>
+          <CookieButton onClick={acceptAll}>לאשר הכל</CookieButton>
           <CookieButton variant="secondary" onClick={rejectAll}>
-            Reject all
+            רק הכרחיות
           </CookieButton>
           <button
             type="button"
             onClick={openModal}
             className="px-2 py-2 text-sm font-medium leading-none text-foreground underline underline-offset-2 hover:text-foreground/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
           >
-            Manage preferences
+            בחירה לפי קטגוריה
           </button>
         </div>
       </animated.section>

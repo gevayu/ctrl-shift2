@@ -1,7 +1,7 @@
 {
-  "name": "Vexon",
-  "short_name": "Vexon",
-  "description": "Vexon AI unifies data, workflows, and signals into one intelligence system so SaaS teams can automate decisions and scale smarter.",
+  "name": "Ctrl+Shift",
+  "short_name": "Ctrl+Shift",
+  "description": "הטמעת CRM, אוטומציות ו-AI לחברות של 10 עובדים ומעלה.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -53,5 +53,7 @@
       "sizes": "any",
       "type": "image/svg+xml"
     }
-  ]
+  ],
+  "lang": "he",
+  "dir": "rtl"
 }

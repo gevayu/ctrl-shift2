@@ -17,7 +17,7 @@ export const privacyPolicy: {
   sections: readonly LegalSection[];
 } = {
   title: "Privacy Policy",
-  intro: "This policy explains what Vexon collects when you use this website, why we collect it, and the choices you have.",
+  intro: "This policy explains what Ctrl+Shift collects when you use this website, why we collect it, and the choices you have.",
   sections: [
     {
       heading: "What we collect",

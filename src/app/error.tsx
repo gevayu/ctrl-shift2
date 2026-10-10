@@ -19,14 +19,14 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 text-center">
-      <h1 className="text-3xl font-bold">Something went wrong</h1>
+    <div className="flex min-h-svh flex-col items-center justify-center gap-4 px-6 text-center">
+      <h1 className="text-3xl font-bold">משהו השתבש אצלנו</h1>
       <button
         type="button"
         onClick={reset}
         className="underline underline-offset-4"
       >
-        Try again
+        לנסות שוב
       </button>
     </div>
   );

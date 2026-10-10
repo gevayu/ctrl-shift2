@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Orbitron, Space_Grotesk } from "next/font/google";
+import { Noto_Sans_Hebrew } from "next/font/google";
 
 import {
   generateMetadata,
@@ -15,17 +15,11 @@ import { ScrollLayout } from "@/layouts/scroll-layout";
 import "@/app/globals.css";
 
 /**
- * The faces and weights the shipped page loaded from Google Fonts (the
- * @import at the top of vexon-old/src/index.css), self-hosted by next/font.
- * The weights are kept exactly: the old page asked for Space Grotesk 700 only,
- * so its `font-medium` headings render at 700, and Inter 300–500 only, so its
- * `font-bold` marquee is a synthesised bold — loading more weights would
- * change both. (Playfair Display was imported but never used; dropped.)
+ * One face across the whole site: Noto Sans Hebrew (client's choice,
+ * 2026-10-10). It carries Latin too, so the Ctrl/Shift labels, numbers and
+ * the formula use it as well.
  */
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], weight: ["300", "400", "500"], display: "swap" });
-const jetbrainsMono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"], weight: ["400", "500"], display: "swap" });
-const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"], weight: ["700"], display: "swap" });
-const orbitron = Orbitron({ variable: "--font-orbitron", subsets: ["latin"], weight: ["700"], display: "swap" });
+const noto = Noto_Sans_Hebrew({ variable: "--font-noto-hebrew", subsets: ["hebrew", "latin"], weight: ["300", "400", "500", "700", "800"], display: "swap" });
 
 export const metadata: Metadata = generateMetadata();
 export const viewport: Viewport = generateViewport();
@@ -38,7 +32,7 @@ export default function RootLayout({
   return (
     // `data-consent` is set on <html> by CONSENT_FLAG_SCRIPT before hydration.
     <html suppressHydrationWarning lang="he" dir="rtl">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${orbitron.variable}`}>
+      <body className={noto.variable}>
         {/* Before anything is parsed: marks a returning visitor's choice so the
             server-rendered consent banner is hidden before its first paint. */}
         <script dangerouslySetInnerHTML={{ __html: CONSENT_FLAG_SCRIPT }} />
