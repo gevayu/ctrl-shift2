@@ -123,7 +123,7 @@ export interface ServiceStep {
 export type ServiceBlock =
   | { kind: "steps"; title: string; items: readonly ServiceStep[] }
   | { kind: "list"; title: string; items: readonly string[] }
-  | { kind: "text"; title: string; paragraphs: readonly string[]; band?: boolean; chips?: readonly string[] }
+  | { kind: "text"; title: string; paragraphs: readonly string[]; band?: boolean; partnerLogos?: boolean }
   | { kind: "story"; title: string; story: Story }
   | { kind: "faq"; title: string; items: readonly Faq[] };
 
@@ -294,7 +294,8 @@ export const implementationPage: ServicePage = {
       title: "המערכות שאנחנו מטמיעים",
       // ponytail: the doc's four per-system paragraphs live in the (unwritten) CTO page copy; add them here when it arrives.
       paragraphs: ["בוחרים מערכת אחרי האפיון, לא לפניו. אלה ארבע המערכות שאנחנו מטמיעים הכי הרבה, כי הן מתאימות לעסק ישראלי בינוני. Monday, Fireberry, אוריגמי, Zoho."],
-      chips: ["Monday", "Fireberry", "אוריגמי", "Zoho"],
+      /** The four systems shown as their logos (the home page's partner logos). */
+      partnerLogos: true,
     },
     {
       kind: "text",

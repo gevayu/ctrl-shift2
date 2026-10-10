@@ -5,11 +5,13 @@ import type { Metadata } from "next";
 import { CtaSection } from "@/components/site/cta-section";
 import { FaqList } from "@/components/site/faq-list";
 import { JsonLd } from "@/components/site/json-ld";
+import { LogoRow } from "@/components/site/logo-marquee";
 import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { SiteShell } from "@/components/site/site-shell";
 import { StoryCard } from "@/components/site/story-card";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { logos } from "@/data/logos";
 import { discoveryPage, implementationPage, supportPage, type ServiceBlock, type ServicePage } from "@/data/services";
 import { generateMetadata } from "@/utils/seo/generate-page-metadata";
 import { faqPageSchema, serviceSchema } from "@/utils/seo/structured-data";
@@ -74,14 +76,10 @@ const Block = ({ block, id, index }: { block: ServiceBlock; id: string; index: s
               <p key={p}>{p}</p>
             ))}
           </div>
-          {block.chips && (
-            <ul className="mt-10 flex flex-wrap gap-3">
-              {block.chips.map((chip) => (
-                <li key={chip} className="rounded-sm border border-ink/20 px-5 py-2.5 font-display text-lg font-bold text-ink">
-                  {chip}
-                </li>
-              ))}
-            </ul>
+          {block.partnerLogos && (
+            <div className="mt-12">
+              <LogoRow dir={logos.partners.dir} items={logos.partners.items} />
+            </div>
           )}
         </Section>
       );

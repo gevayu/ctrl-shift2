@@ -18,7 +18,7 @@ const MIN_PER_HALF = 12;
  * Equal-area sizing: a wide wordmark and a round badge read at the same
  * weight, which equal heights never do (the wordmark would dwarf the badge).
  */
-const sizeOf = ({ w, h }: Logo) => {
+export const sizeOf = ({ w, h }: Logo) => {
   const ratio = w / h;
   let height = Math.min(MAX_H, Math.sqrt(AREA / ratio));
   let width = ratio * height;
@@ -65,3 +65,17 @@ export const LogoMarquee = ({ dir, items }: { dir: string; items: readonly Logo[
     </>
   );
 };
+
+/** The same logos as a still row, named by their alt text (here they replace the names). */
+export const LogoRow = ({ dir, items }: { dir: string; items: readonly Logo[] }) => (
+  <ul className="grid grid-cols-2 items-center gap-x-8 gap-y-6 sm:flex sm:flex-wrap sm:gap-x-14 sm:gap-y-8">
+    {items.map((logo) => {
+      const { width, height } = sizeOf(logo);
+      return (
+        <li key={logo.slug} className="flex h-20 items-center">
+          <Image src={`${dir}/${logo.slug}.png`} alt={logo.name} width={width} height={height} sizes={`${width}px`} className="opacity-80" />
+        </li>
+      );
+    })}
+  </ul>
+);
