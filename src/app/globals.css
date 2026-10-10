@@ -1,0 +1,210 @@
+/* `source("../")` limits class detection to `src/` (this file lives in src/app).
+   Without it Tailwind v4 scans the whole repo — including obsidian/ and .claude/,
+   where documented class *patterns* like duration-[var(--duration-*)] parse as
+   real candidates and emit CSS warnings. Docs are not a source of utilities. */
+@import "tailwindcss" source("../");
+
+/* ---------------------------------------------------------------------------
+   TIER 1 — PRIMITIVES  (`--raw-*`)
+   Raw literal values. The only tier allowed to contain a hex/px/ms literal.
+   Never referenced in markup, never bound into @theme. Rename freely.
+   Grammar: --raw-<category>-<name>[-<shade>]
+   See obsidian/frontend/design-system.md → "Token naming convention".
+   --------------------------------------------------------------------------- */
+:root {
+  --raw-color-white: #ffffff;
+  --raw-color-neutral-100: #ededed;
+  --raw-color-neutral-900: #171717;
+  --raw-color-neutral-950: #0a0a0a;
+
+  --raw-duration-fast: 150ms;
+  --raw-duration-normal: 250ms;
+
+  /* Vexon — the shipped palette and scale (vexon-old/src/App.tsx, index.css), 1:1. */
+  --raw-color-black: #000000;
+  --raw-color-gray-400: #8e9299;
+  --raw-color-gray-100: #e6e6e6;
+  --raw-duration-ring: 300ms;
+  --raw-duration-slow: 700ms;
+
+  --raw-text-9: 9px;
+  --raw-text-10: 10px;
+  --raw-text-11: 11px;
+  --raw-text-18: 18px;
+  --raw-text-32: 32px;
+  --raw-text-48: 48px;
+  --raw-text-12vw: 12vw;
+  /* The phone hero: its widest line ("UNFAIR ADVANTAGE", 8.92 em in this face)
+     fits the content box (viewport minus the 2 × 1.5rem gutter) with ~3 %
+     to spare, so each of the three lines stays one line at every phone width.
+     At 12vw the lines broke mid-word ("DA / TA", "YO / UR") — owner review. */
+  --raw-text-hero-fit: calc((100vw - 3rem) / 9.2);
+  --raw-text-8vw: 8vw;
+  --raw-text-7vw: 7vw;
+  --raw-text-6vw: 6vw;
+  --raw-space-58: 58px;
+  --raw-size-200: 200px;
+  --raw-glow-15: 0 0 15px rgba(255, 255, 255, 0.2);
+  --raw-glow-20: 0 0 20px rgba(255, 255, 255, 0.3);
+  /* Fallbacks only: the next/font variables are defined on <body>, so they are
+     referenced where they are in scope (the @theme binding), never here. */
+  --raw-font-sans-fallback: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --raw-font-mono-fallback: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --raw-font-display-fallback: "Space Grotesk", sans-serif;
+  --raw-font-logo-fallback: "Orbitron", sans-serif;
+  --raw-font-system: sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   TIER 2 — SEMANTIC  (role names, no namespace prefix)
+   Purpose, not appearance. Always `var(--raw-*)` — never a literal.
+   This is the themeable layer: dark mode overrides happen HERE, which is why
+   these are separate from the @theme bindings below (see the note there).
+   Grammar: --<role>[-<variant>][-<state>]
+   --------------------------------------------------------------------------- */
+:root {
+  --background: var(--raw-color-white);
+  --foreground: var(--raw-color-neutral-900);
+
+  --duration-fast: var(--raw-duration-fast);
+  --duration-normal: var(--raw-duration-normal);
+  --duration-ring: var(--raw-duration-ring);
+  --duration-slow: var(--raw-duration-slow);
+
+  --page: var(--raw-color-black);
+  --ink: var(--raw-color-white);
+  --muted: var(--raw-color-gray-400);
+  --soft: var(--raw-color-gray-100);
+  --glow: var(--raw-glow-15);
+  --glow-strong: var(--raw-glow-20);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--raw-color-neutral-950);
+    --foreground: var(--raw-color-neutral-100);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   THEME BINDINGS — map semantic tokens into Tailwind namespaces.
+   Every entry is exactly `--<tw-namespace>-<role>: var(--<role>)`.
+   `inline` is required: it inlines the var() into each utility, so the
+   dark-mode overrides on the Tier 2 tokens above cascade. Binding a literal
+   here instead would freeze the value and break theming.
+
+   Only these namespaces generate utilities (verified against tailwindcss
+   v4.3.3): --color-* --spacing-* --radius-* --leading-* --tracking-* --text-*
+   --font-* --ease-* --breakpoint-* --container-* --shadow-* --blur-* --animate-*
+   NOTE: there is NO --duration-* namespace in v4 — `duration-fast` compiles to
+   nothing. Durations stay Tier 2 only and are used as duration-[var(--duration-fast)].
+   --------------------------------------------------------------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), var(--raw-font-sans-fallback);
+  --font-mono: var(--font-jetbrains-mono), var(--raw-font-mono-fallback);
+  --font-display: var(--font-space-grotesk), var(--raw-font-display-fallback);
+  --font-logo: var(--font-orbitron), var(--raw-font-logo-fallback);
+  --font-system: var(--raw-font-system);
+
+  /* Leading floor for clipped TextEngine reveals — see
+     obsidian/frontend/text-engine.md → "Alignment & line-height". */
+  --leading-display: 1.1;
+
+  --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
+
+  --color-muted: var(--muted);
+  --color-soft: var(--soft);
+
+  --text-micro: var(--raw-text-9);
+  --text-label: var(--raw-text-10);
+  --text-tag: var(--raw-text-11);
+  /* The privacy policy's headings (the page has no mid sizes of its own). */
+  --text-legal-title: var(--raw-text-32);
+  --text-legal-heading: var(--raw-text-18);
+  --text-marquee: var(--raw-text-32);
+  --text-marquee-md: var(--raw-text-48);
+  --text-hero: var(--raw-text-12vw);
+  --text-hero-fit: var(--raw-text-hero-fit);
+  --text-hero-md: var(--raw-text-7vw);
+  --text-hero-lg: var(--raw-text-6vw);
+  --text-mission-md: var(--raw-text-8vw);
+  --text-mission-lg: var(--raw-text-7vw);
+
+  --spacing-hero-drop: var(--raw-space-58);
+  --spacing-mission-box: var(--raw-size-200);
+
+  --drop-shadow-glow: var(--glow);
+  --drop-shadow-glow-strong: var(--glow-strong);
+}
+
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  /* Vexon is one black page: the old body was bg-black text-white antialiased,
+     no scrollbar. The old page hid the native cursor; it is kept now and the
+     custom dot + ring float over it (ADR-0028, owner 2026-10-01).
+     Line-height stays Tailwind's 1.5 — the old page was Tailwind too. */
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+body ::selection {
+  background: var(--ink);
+  color: var(--page);
+}
+
+@layer base {
+  /* Fixed 16px root — the adaptive rem grid is off for Vexon (ADR-0026): the
+     shipped page is Tailwind on the browser's 16 px root, with its display
+     type in vw; scaling rem with the viewport would resize every rem utility
+     away from the original at every width but 1440. */
+  html {
+    font-size: 16px;
+  }
+}
+
+@layer utilities {
+  /* The footer's blur strip fades out upward (was .progressive-blur). */
+  .progressive-blur {
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 100%);
+  }
+  /* The headline lines' horizontal fades (the old [mask-image:…] arbitraries),
+     mirrored for RTL: a line fades in from its start edge, on the right. */
+  .mask-fade-in {
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.15), white 85%);
+  }
+  .mask-fade-out {
+    mask-image: linear-gradient(to left, white 15%, rgba(0, 0, 0, 0.15));
+  }
+}
+
+@layer components {
+  /* The orb's hot light plume above the halo (was ParticleOrb's inline background). */
+  .orb-plume {
+    background: radial-gradient(60% 50% at 50% 22%, rgba(120, 170, 255, 0.18), rgba(40, 80, 180, 0.05) 40%, transparent 70%);
+  }
+}
+
+/* The consent banner is server-rendered (it paints with the page). Hidden before
+   paint for a visitor who already chose (`consent-flag.ts`) and on the robot
+   form, which has no visitor to ask (D-016). */
+html[data-consent] [data-cookie-banner],
+html:has(meta[name="x-robot-view"]) [data-cookie-banner] {
+  display: none;
+}

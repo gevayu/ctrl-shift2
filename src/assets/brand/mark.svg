@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Vexon mark: the wordmark's "V" (Orbitron Bold, outlined) on the page's black, over a faint halo of the hero's particle orb. -->
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="38%" r="55%">
+      <stop offset="0" stop-color="#5b7cff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#000000"/>
+  <rect width="64" height="64" rx="14" fill="url(#halo)"/>
+  <path transform="translate(10.53 47.13) scale(0.42)" fill="#ffffff" d="M57 0L45.20 0L45.20 0L3.50-72L18.90-72L51.10-16L83.40-72L98.70-72L57 0Z"/>
+</svg>
