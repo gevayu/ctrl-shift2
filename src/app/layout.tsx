@@ -17,8 +17,9 @@ import "@/app/globals.css";
 /**
  * One face across the whole site: OZ Kriti Narrow (Omer Zofy, client's
  * licence, 2026-10-11), self-hosted from `src/assets/fonts/`. It carries
- * Hebrew, Latin and digits, so every role uses it. The licence forbids
- * redistributing the font files: they are git-ignored, never committed.
+ * Hebrew, Latin and digits, so every role uses it. Licensed to the site
+ * owner (omerzofy.com): web embedding is allowed, handing the font files to
+ * anyone else is not.
  */
 const kriti = localFont({
   variable: "--font-kriti",
