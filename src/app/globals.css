@@ -53,7 +53,7 @@
   --raw-font-system: sans-serif;
 
   /* Ctrl+Shift type scale. Fluid: each size grows with the viewport between a
-     phone floor and a wide-screen ceiling. Sized for Hebrew in Noto Sans Hebrew 800. */
+     phone floor and a wide-screen ceiling. Sized for Hebrew in OZ Kriti Narrow 800. */
   --raw-text-h1: clamp(2.25rem, 5.2vw, 6rem);
   --raw-text-h2: clamp(1.75rem, 3.4vw, 3.25rem);
   --raw-text-formula: clamp(2rem, 8vw, 8.5rem);
@@ -107,11 +107,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* One face site-wide (Noto Sans Hebrew); the three roles stay so markup
+  /* One face site-wide (OZ Kriti Narrow); the three roles stay so markup
      keeps its intent and a role can get its own face again later. */
-  --font-sans: var(--font-noto-hebrew), var(--raw-font-sans-fallback);
-  --font-mono: var(--font-noto-hebrew), var(--raw-font-sans-fallback);
-  --font-display: var(--font-noto-hebrew), var(--raw-font-display-fallback);
+  --font-sans: var(--font-kriti), var(--raw-font-sans-fallback);
+  --font-mono: var(--font-kriti), var(--raw-font-sans-fallback);
+  --font-display: var(--font-kriti), var(--raw-font-display-fallback);
   --font-system: var(--raw-font-system);
 
   /* Leading floor for clipped TextEngine reveals — see
